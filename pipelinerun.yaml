@@ -4,6 +4,8 @@ metadata:
   generateName: pipelinerun-nextapp-
 spec:
   params:
+    - name: app-name
+      value: nextapp
     - name: source-repo
       value: https://github.com/phthom/nextapp
     - name: image-repo
