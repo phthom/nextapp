@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: pipelinerun-nextapp-
+spec:
+  params:
+    - name: source-repo
+      value: https://github.com/phthom/nextapp
+    - name: image-repo
+      value: image-registry.openshift-image-registry.svc:5000/nextapp/nextapp
+  pipelineRef:
+    name: pipeline-nextapp
+  workspaces:
+    - name: pipeline-shared-data
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 1Gi
+          accessModes:
+            - ReadWriteOnce
